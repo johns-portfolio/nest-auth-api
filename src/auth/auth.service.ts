@@ -6,7 +6,7 @@ import { User, UsersService } from '../users/users.service'
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService
   ) {}
 
   /**
@@ -27,14 +27,15 @@ export class AuthService {
     return undefined
   }
 
-  login(user: User) {
+  signIn(user: User) {
     const payload: JwtPayload = {
       username: user.username,
       sub: user.id,
+      isAdmin: user.isAdmin
     }
     console.log('🔥 login payload', payload)
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload)
     }
   }
 }
@@ -42,6 +43,7 @@ export class AuthService {
 export interface JwtPayload {
   username: string
   sub: number
+  isAdmin: boolean
   iat?: number
   exp?: number
 }

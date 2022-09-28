@@ -3,8 +3,9 @@ import { Injectable } from '@nestjs/common'
 export interface User {
   id: number
   username: string
+  email: string
   password: string
-  name: string
+  isAdmin: boolean
 }
 
 const userList: User[] = [
@@ -12,13 +13,15 @@ const userList: User[] = [
     id: 1,
     username: 'jame',
     password: '2222',
-    name: 'Jame A.'
+    email: 'jame@local',
+    isAdmin: false
   },
   {
     id: 2,
     username: 'john',
     password: '1111',
-    name: 'John S.'
+    email: 'john@local',
+    isAdmin: true
   }
 ]
 
